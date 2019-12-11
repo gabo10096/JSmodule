@@ -1,0 +1,7 @@
+CREATE TABLE IF NOT EXISTS courses (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  name VARCHAR(50),
+  image VARCHAR(150),
+  category VARCHAR(50),
+  start_date VARCHAR(50)
+)

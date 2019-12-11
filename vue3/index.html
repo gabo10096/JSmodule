@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+<body>
+    <div id="app">
+        <label>
+           {{titulo}} {{cuantos}}
+        </label>
+        <ul v-if = "show">
+            <li :ket="i" v-for="(comida, i) in comidas">
+                <todo-item :platillo="comida.name"/><!-- v-bind -->>
+            </li>
+        </ul>
+        <button @click="showList">Alternar vista</button>
+        <button @click="changeTitle">Cambiar titulo</button>
+        <button @click="addElement">Agregar</button>
+    </div>   
+</body>
+</html>
+
+<script>
+    Vue.component('todo-item', {
+        props:['platillo'],
+        template: '<li><h3> Vamos a comer => {{platillo}} </h3></li>'
+    })
+    let app = new Vue({
+        el: '#app',
+        data:{
+            titulo:"Hola",
+            java: false,
+            show: false,
+            cuantos:0,
+            comidas:[
+                {
+                    name: "Tacos"
+                },
+                {
+                    name: "Tortas"
+                }
+            ]
+        },
+        watch :{
+            comidas(){
+                this.cuantos = this.comidas.length;
+            }
+        },
+        methods:{
+            showList(){
+                this.show = !this.show;
+            },
+            changeTitle(){
+                this.titulo = "Hola muchachos";
+            },
+            addElement(){
+                this.comidas.push({name:"Tamales"})
+            }
+        }
+    })
+</script>
